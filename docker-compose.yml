@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  municipalidad_pgb_api:
+    build: municipalidad
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:mysql://municipalidad:3306/municipalidad_pueblo_belgrano?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USER: root
+      DB_PASSWORD: 1234
+      PRIVATE_KEY: PRIVATE_KEY=8424a41b5ff6477c5749a089770ed5ea6e780344da19a9ca2aa9613b1bf97f1d
+      RECAPTCHA_SECRET_KEY: 6LeVbbMrAAAAACf6tA6s7QPaamHxn33bqe4WFt5q
+      SS_PASSWORD: 123
+      SS_USER: MATEO
+      USER_GENERATOR: MATEOSECURITY
+    restart: always
+    depends_on:
+      municipalidad:
+          condition: service_healthy
+  municipalidad:
+    image: mysql:8.0.33 
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: municipalidad_pueblo_belgrano
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
