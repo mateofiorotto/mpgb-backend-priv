@@ -9,12 +9,13 @@ services:
     environment:
       DB_URL: jdbc:mysql://municipalidad:3306/municipalidad_pueblo_belgrano?createDatabaseIfNotExist=true&serverTimezone=UTC
       DB_USER: root
-      DB_PASSWORD: 1234
-      PRIVATE_KEY: PRIVATE_KEY=8424a41b5ff6477c5749a089770ed5ea6e780344da19a9ca2aa9613b1bf97f1d
+      DB_PASSWORD: A_bD89L!vT-AfI%w
+      PRIVATE_KEY: a9aa6a43af9eddcccf1d4df3324c9edad3239601803e239ef48648983d173e20
+      USER_GENERATOR: SPRING_SEC_JWT_GEN_MUNICIPALIDAD_PGB
       RECAPTCHA_SECRET_KEY: 6LeVbbMrAAAAACf6tA6s7QPaamHxn33bqe4WFt5q
-      SS_PASSWORD: 123
-      SS_USER: MATEO
-      USER_GENERATOR: MATEOSECURITY
+      RECAPTCHA_SITE_KEY: 6LeVbbMrAAAAAB2NUZWTGVenSrwgi0afOlv6kPgi
+      SS_PASSWORD: MUNICIPALIDAD_PGB_2025_PW
+      SS_USER: SPRING_SEC_BASIC_MUNICIPALIDAD_PGB
     restart: always
     depends_on:
       municipalidad:
@@ -24,8 +25,7 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: A_bD89L!vT-AfI%w
       MYSQL_DATABASE: municipalidad_pueblo_belgrano
     restart: always
     healthcheck:
